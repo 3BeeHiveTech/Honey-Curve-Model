@@ -8,8 +8,49 @@ repository. Specifically, the model here reported is the [M221124_002 model](htt
 
 
 ## Installation (testing)
+To install the package in development mode, you can use the following commands to clone the repo:
 
-To add the locale it_IT (needed for the notebooks)
+```bash
+git clone git@github.com:3BeeHiveTech/Honey-Curve-Model.git
+cd Honey-Curve-Model
+```
+
+Next you can install the package in a local conda environment named `honey_curve` when inside the
+`Honey-Curve-Model` folder like so:
+
+```bash
+conda create -n honey_curve python=3.10
+conda activate honey_curve
+(honey_curve) pip install -e ".[test]"
+```
+
+This will install the current package and its dependencies in editable mode, with all of the test
+requirements (used to format the code).
+
+Now you can run the `make help` to see what are the avaiable commands. Remember to run each command
+with the `(honey_curve)` environment always activated.
+
+```bash
+(honey_curve) make help  # show the make help
+```
+
+
+## Installation (production)
+To install the package in production mode, you can use the following command to create a new conda
+environment and install the package from git:
+
+```bash
+conda create -n honey_curve python=3.10
+conda activate honey_curve
+(honey_curve) pip install git+https://github.com/3BeeHiveTech/Honey-Curve-Model.git
+```
+
+This will install the `honey_curve` package directly from the git repository.
+
+
+## Configuring the italian language package
+
+To add the locale it_IT to an Ubuntu-like system you can run:
 
 ```bash
 sudo apt-get install language-pack-it
@@ -17,29 +58,8 @@ sudo locale-gen it_IT
 sudo update-locale
 ```
 
-
-**TODO ...**
-
-```bash
-conda create -n honey_curve python=3.10
-```
-
-
-```bash
-pip install -e ".[test]"
-```
-
-All of the the MAKE commands MUST be run with the `.venv` virtual environment activated.
-
-You can now run:
-```bash
-make help  # show the make help
-```
-to see other avaible commands for updating the envirnoment, formatting and launching the tests.
-
-
-## Installation (production)
-**TODO ...**
+This is not strictly needed for the code but the loading notebooks requires on the italian local
+when displaying the honey summary by month.
 
 
 ## Configuring honey_curve
