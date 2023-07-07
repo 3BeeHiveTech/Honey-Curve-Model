@@ -8,7 +8,26 @@ repository. Specifically, the model here reported is the [M221124_002 model](htt
 
 
 ## Installation (testing)
+
+To add the locale it_IT (needed for the notebooks)
+
+```bash
+sudo apt-get install language-pack-it
+sudo locale-gen it_IT
+sudo update-locale
+```
+
+
 **TODO ...**
+
+```bash
+conda create -n honey_curve python=3.10
+```
+
+
+```bash
+pip install -e ".[test]"
+```
 
 All of the the MAKE commands MUST be run with the `.venv` virtual environment activated.
 
