@@ -1,0 +1,7 @@
+# This requirements are for development and testing only, not for production.
+ipykernel
+pytest
+flake8
+black
+isort
+autoflake
