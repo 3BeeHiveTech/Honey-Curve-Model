@@ -1,0 +1,176 @@
+24-Nov-22 15:26:49: INFO : * Start loading the annotations dataframes.
+24-Nov-22 15:26:49: INFO : Loaded df_ann_03 from 2022_10_17_LabelStudio_Weights_03_export with shape: (35, 10)
+24-Nov-22 15:26:49: INFO : Loaded df_ann_03_jump from 2022_10_17_LabelStudio_Weights_03_is_jump_export with shape: (35, 10)
+24-Nov-22 15:26:49: INFO : * Start applying the jump detection algorithm on all Weights_03 traces.
+24-Nov-22 15:26:49: INFO : Applying jump detection algorithm on hive_id=19 and year=2019
+24-Nov-22 15:26:49: INFO : Applying jump detection algorithm on hive_id=25 and year=2019
+24-Nov-22 15:26:49: INFO : Applying jump detection algorithm on hive_id=26 and year=2019
+24-Nov-22 15:26:50: INFO : Applying jump detection algorithm on hive_id=95 and year=2019
+24-Nov-22 15:26:50: INFO : Applying jump detection algorithm on hive_id=444 and year=2019
+24-Nov-22 15:26:50: INFO : Applying jump detection algorithm on hive_id=469 and year=2019
+24-Nov-22 15:26:50: INFO : Applying jump detection algorithm on hive_id=489 and year=2019
+24-Nov-22 15:26:51: INFO : Applying jump detection algorithm on hive_id=490 and year=2019
+24-Nov-22 15:26:51: INFO : Applying jump detection algorithm on hive_id=507 and year=2019
+24-Nov-22 15:26:51: INFO : Applying jump detection algorithm on hive_id=528 and year=2019
+24-Nov-22 15:26:52: INFO : Applying jump detection algorithm on hive_id=531 and year=2019
+24-Nov-22 15:26:52: INFO : Applying jump detection algorithm on hive_id=556 and year=2019
+24-Nov-22 15:26:52: INFO : Applying jump detection algorithm on hive_id=557 and year=2019
+24-Nov-22 15:26:52: INFO : Applying jump detection algorithm on hive_id=563 and year=2019
+24-Nov-22 15:26:53: INFO : Applying jump detection algorithm on hive_id=582 and year=2019
+24-Nov-22 15:26:53: INFO : Applying jump detection algorithm on hive_id=649 and year=2019
+24-Nov-22 15:26:53: INFO : Applying jump detection algorithm on hive_id=703 and year=2019
+24-Nov-22 15:26:54: INFO : Applying jump detection algorithm on hive_id=753 and year=2019
+24-Nov-22 15:26:54: INFO : Applying jump detection algorithm on hive_id=768 and year=2019
+24-Nov-22 15:26:54: INFO : Applying jump detection algorithm on hive_id=799 and year=2019
+24-Nov-22 15:26:55: INFO : Applying jump detection algorithm on hive_id=898 and year=2019
+24-Nov-22 15:26:55: INFO : Applying jump detection algorithm on hive_id=905 and year=2019
+24-Nov-22 15:26:55: INFO : Applying jump detection algorithm on hive_id=919 and year=2019
+24-Nov-22 15:26:55: INFO : Applying jump detection algorithm on hive_id=920 and year=2019
+24-Nov-22 15:26:56: INFO : Applying jump detection algorithm on hive_id=982 and year=2019
+24-Nov-22 15:26:56: INFO : Applying jump detection algorithm on hive_id=1068 and year=2019
+24-Nov-22 15:26:56: INFO : Applying jump detection algorithm on hive_id=40 and year=2020
+24-Nov-22 15:26:56: INFO : Applying jump detection algorithm on hive_id=507 and year=2020
+24-Nov-22 15:26:56: INFO : Applying jump detection algorithm on hive_id=514 and year=2020
+24-Nov-22 15:26:57: INFO : Applying jump detection algorithm on hive_id=521 and year=2020
+24-Nov-22 15:26:57: INFO : Applying jump detection algorithm on hive_id=522 and year=2020
+24-Nov-22 15:26:57: INFO : Applying jump detection algorithm on hive_id=531 and year=2020
+24-Nov-22 15:26:58: INFO : Applying jump detection algorithm on hive_id=544 and year=2020
+24-Nov-22 15:26:58: INFO : Applying jump detection algorithm on hive_id=546 and year=2020
+24-Nov-22 15:26:58: INFO : Applying jump detection algorithm on hive_id=556 and year=2020
+24-Nov-22 15:26:58: INFO : Done.
+24-Nov-22 15:26:58: INFO : Here is the head of the df_tot dataframe:
+24-Nov-22 15:26:58: INFO : +----+--------------------------------------------+-----------------+-------------------------+---------------+
+24-Nov-22 15:26:58: INFO : |    | jump_match                                 | lbl_jump_type   | lbl_jump_name           | lbl_is_jump   |
+24-Nov-22 15:26:58: INFO : |----+--------------------------------------------+-----------------+-------------------------+---------------|
+24-Nov-22 15:26:58: INFO : |  0 | [2019-08-30 22:01:54, 2019-08-31 03:01:54) | is_big_jump     | Messa Arnia             | True          |
+24-Nov-22 15:26:58: INFO : |  1 | [2019-08-30 17:59:26, 2019-08-30 22:01:54) | is_big_jump     | Tolta Arnia             | True          |
+24-Nov-22 15:26:58: INFO : |  2 | [2019-08-29 13:01:54, 2019-08-29 18:02:47) | is_big_jump     | Tolto 1 Melario         | True          |
+24-Nov-22 15:26:58: INFO : |  3 | [2019-07-25 22:01:48, 2019-07-26 01:01:48) | is_big_jump     | Messa Arnia + 1 Melario | True          |
+24-Nov-22 15:26:58: INFO : |  4 | [2019-07-25 11:00:23, 2019-07-25 14:00:23) | is_big_jump     | Messo 1 Melario         | True          |
+24-Nov-22 15:26:58: INFO : +----+--------------------------------------------+-----------------+-------------------------+---------------+
+24-Nov-22 15:26:58: INFO : ...
+24-Nov-22 15:26:58: INFO : +----+--------------------------------------------+--------------------------------------------+--------+-----------+
+24-Nov-22 15:26:58: INFO : |    | alg_jump_interval                          | jump_interval                              |   year |   hive_id |
+24-Nov-22 15:26:58: INFO : |----+--------------------------------------------+--------------------------------------------+--------+-----------|
+24-Nov-22 15:26:58: INFO : |  0 | [2019-08-30 23:30:00, 2019-08-31 03:30:00) | [2019-08-30 23:30:00, 2019-08-31 03:30:00) |   2019 |        19 |
+24-Nov-22 15:26:58: INFO : |  1 | [2019-08-30 19:00:00, 2019-08-30 23:00:00) | [2019-08-30 19:00:00, 2019-08-30 23:00:00) |   2019 |        19 |
+24-Nov-22 15:26:58: INFO : |  2 | [2019-08-29 14:30:00, 2019-08-29 18:30:00) | [2019-08-29 14:30:00, 2019-08-29 18:30:00) |   2019 |        19 |
+24-Nov-22 15:26:58: INFO : |  3 | nan                                        | [2019-07-25 22:01:48, 2019-07-26 01:01:48) |   2019 |        19 |
+24-Nov-22 15:26:58: INFO : |  4 | [2019-07-25 11:30:00, 2019-07-25 15:30:00) | [2019-07-25 11:30:00, 2019-07-25 15:30:00) |   2019 |        19 |
+24-Nov-22 15:26:58: INFO : +----+--------------------------------------------+--------------------------------------------+--------+-----------+
+24-Nov-22 15:26:58: INFO : * Define label and features:
+24-Nov-22 15:26:58: INFO : features: ['alg_jump_size', 'alg_jump_baseline_left', 'alg_jump_baseline_right', 'alg_jump_max', 'alg_jump_min', 'alg_jump_center', 'alg_jump_step_factor_180', 'alg_jump_step_factor_360', 'alg_jump_slope_factor_180', 'alg_jump_slope_factor_360']
+24-Nov-22 15:26:58: INFO : label: lbl_jump_type
+24-Nov-22 15:26:58: INFO : * Split dataset into test and train.
+24-Nov-22 15:26:58: INFO : Size X_train: (1031, 10)
+24-Nov-22 15:26:58: INFO : Size X_test: (442, 10)
+24-Nov-22 15:26:58: INFO : Size y_train: (1031,)
+24-Nov-22 15:26:58: INFO : Size y_test: (442,)
+24-Nov-22 15:26:58: INFO : * Start training a HistGradientBoostingClassifier:
+24-Nov-22 15:26:59: INFO : End training.
+24-Nov-22 15:26:59: INFO : * Predict on the test dataset...
+24-Nov-22 15:26:59: INFO : Done predictions.
+24-Nov-22 15:26:59: INFO : * Calculate performance metrics:
+24-Nov-22 15:26:59: INFO : Accuracy: 0.9230769230769231
+24-Nov-22 15:26:59: INFO : Confusion matrix:
+24-Nov-22 15:26:59: INFO : +---------------------------+---------------------------+-----------------------------+-----------------------+
+24-Nov-22 15:26:59: INFO : |                           |   ('pred', 'is_big_jump') |   ('pred', 'is_small_jump') |   ('pred', 'no_type') |
+24-Nov-22 15:26:59: INFO : |---------------------------+---------------------------+-----------------------------+-----------------------|
+24-Nov-22 15:26:59: INFO : | ('real', 'is_big_jump')   |                        91 |                           5 |                     3 |
+24-Nov-22 15:26:59: INFO : | ('real', 'is_small_jump') |                         3 |                          27 |                    14 |
+24-Nov-22 15:26:59: INFO : | ('real', 'no_type')       |                         2 |                           7 |                   290 |
+24-Nov-22 15:26:59: INFO : +---------------------------+---------------------------+-----------------------------+-----------------------+
+24-Nov-22 15:26:59: INFO : * Save data to disk:
+24-Nov-22 15:26:59: INFO : Model folder set at: /mnt/c/data/Generali-Parametrica-Alveari_data/models/y2022_11/m221124_002
+24-Nov-22 15:26:59: INFO : Saved model at: /mnt/c/data/Generali-Parametrica-Alveari_data/models/y2022_11/m221124_002/m221124_002.pickle
+24-Nov-22 15:26:59: INFO : * Save dataframe df_tot with features and predictions to disk:
+24-Nov-22 15:26:59: INFO : Saved df_tot as pickle at: /mnt/c/data/Generali-Parametrica-Alveari_data/models/y2022_11/m221124_002/df_tot.pickle
+24-Nov-22 15:26:59: INFO : Saved df_tot as csv at: /mnt/c/data/Generali-Parametrica-Alveari_data/models/y2022_11/m221124_002/df_tot.csv
+24-Nov-22 16:27:35: INFO : * Start loading the annotations dataframes.
+24-Nov-22 16:27:35: INFO : Loaded df_ann_03 from 2022_10_17_LabelStudio_Weights_03_export with shape: (35, 10)
+24-Nov-22 16:27:35: INFO : Loaded df_ann_03_jump from 2022_10_17_LabelStudio_Weights_03_is_jump_export with shape: (35, 10)
+24-Nov-22 16:27:35: INFO : * Start applying the jump detection algorithm on all Weights_03 traces.
+24-Nov-22 16:27:35: INFO : Applying jump detection algorithm on hive_id=19 and year=2019
+24-Nov-22 16:27:35: INFO : Applying jump detection algorithm on hive_id=25 and year=2019
+24-Nov-22 16:27:35: INFO : Applying jump detection algorithm on hive_id=26 and year=2019
+24-Nov-22 16:27:36: INFO : Applying jump detection algorithm on hive_id=95 and year=2019
+24-Nov-22 16:27:36: INFO : Applying jump detection algorithm on hive_id=444 and year=2019
+24-Nov-22 16:27:36: INFO : Applying jump detection algorithm on hive_id=469 and year=2019
+24-Nov-22 16:27:36: INFO : Applying jump detection algorithm on hive_id=489 and year=2019
+24-Nov-22 16:27:37: INFO : Applying jump detection algorithm on hive_id=490 and year=2019
+24-Nov-22 16:27:37: INFO : Applying jump detection algorithm on hive_id=507 and year=2019
+24-Nov-22 16:27:37: INFO : Applying jump detection algorithm on hive_id=528 and year=2019
+24-Nov-22 16:27:37: INFO : Applying jump detection algorithm on hive_id=531 and year=2019
+24-Nov-22 16:27:38: INFO : Applying jump detection algorithm on hive_id=556 and year=2019
+24-Nov-22 16:27:38: INFO : Applying jump detection algorithm on hive_id=557 and year=2019
+24-Nov-22 16:27:38: INFO : Applying jump detection algorithm on hive_id=563 and year=2019
+24-Nov-22 16:27:39: INFO : Applying jump detection algorithm on hive_id=582 and year=2019
+24-Nov-22 16:27:39: INFO : Applying jump detection algorithm on hive_id=649 and year=2019
+24-Nov-22 16:27:39: INFO : Applying jump detection algorithm on hive_id=703 and year=2019
+24-Nov-22 16:27:40: INFO : Applying jump detection algorithm on hive_id=753 and year=2019
+24-Nov-22 16:27:40: INFO : Applying jump detection algorithm on hive_id=768 and year=2019
+24-Nov-22 16:27:40: INFO : Applying jump detection algorithm on hive_id=799 and year=2019
+24-Nov-22 16:27:40: INFO : Applying jump detection algorithm on hive_id=898 and year=2019
+24-Nov-22 16:27:41: INFO : Applying jump detection algorithm on hive_id=905 and year=2019
+24-Nov-22 16:27:41: INFO : Applying jump detection algorithm on hive_id=919 and year=2019
+24-Nov-22 16:27:41: INFO : Applying jump detection algorithm on hive_id=920 and year=2019
+24-Nov-22 16:27:42: INFO : Applying jump detection algorithm on hive_id=982 and year=2019
+24-Nov-22 16:27:42: INFO : Applying jump detection algorithm on hive_id=1068 and year=2019
+24-Nov-22 16:27:42: INFO : Applying jump detection algorithm on hive_id=40 and year=2020
+24-Nov-22 16:27:42: INFO : Applying jump detection algorithm on hive_id=507 and year=2020
+24-Nov-22 16:27:42: INFO : Applying jump detection algorithm on hive_id=514 and year=2020
+24-Nov-22 16:27:42: INFO : Applying jump detection algorithm on hive_id=521 and year=2020
+24-Nov-22 16:27:43: INFO : Applying jump detection algorithm on hive_id=522 and year=2020
+24-Nov-22 16:27:43: INFO : Applying jump detection algorithm on hive_id=531 and year=2020
+24-Nov-22 16:27:43: INFO : Applying jump detection algorithm on hive_id=544 and year=2020
+24-Nov-22 16:27:44: INFO : Applying jump detection algorithm on hive_id=546 and year=2020
+24-Nov-22 16:27:44: INFO : Applying jump detection algorithm on hive_id=556 and year=2020
+24-Nov-22 16:27:44: INFO : Done.
+24-Nov-22 16:27:44: INFO : Here is the head of the df_tot dataframe:
+24-Nov-22 16:27:44: INFO : +----+--------------------------------------------+-----------------+-------------------------+---------------+
+24-Nov-22 16:27:44: INFO : |    | jump_match                                 | lbl_jump_type   | lbl_jump_name           | lbl_is_jump   |
+24-Nov-22 16:27:44: INFO : |----+--------------------------------------------+-----------------+-------------------------+---------------|
+24-Nov-22 16:27:44: INFO : |  0 | [2019-08-30 22:01:54, 2019-08-31 03:01:54) | is_big_jump     | Messa Arnia             | True          |
+24-Nov-22 16:27:44: INFO : |  1 | [2019-08-30 17:59:26, 2019-08-30 22:01:54) | is_big_jump     | Tolta Arnia             | True          |
+24-Nov-22 16:27:44: INFO : |  2 | [2019-08-29 13:01:54, 2019-08-29 18:02:47) | is_big_jump     | Tolto 1 Melario         | True          |
+24-Nov-22 16:27:44: INFO : |  3 | [2019-07-25 22:01:48, 2019-07-26 01:01:48) | is_big_jump     | Messa Arnia + 1 Melario | True          |
+24-Nov-22 16:27:44: INFO : |  4 | [2019-07-25 11:00:23, 2019-07-25 14:00:23) | is_big_jump     | Messo 1 Melario         | True          |
+24-Nov-22 16:27:44: INFO : +----+--------------------------------------------+-----------------+-------------------------+---------------+
+24-Nov-22 16:27:44: INFO : ...
+24-Nov-22 16:27:44: INFO : +----+--------------------------------------------+--------------------------------------------+--------+-----------+
+24-Nov-22 16:27:44: INFO : |    | alg_jump_interval                          | jump_interval                              |   year |   hive_id |
+24-Nov-22 16:27:44: INFO : |----+--------------------------------------------+--------------------------------------------+--------+-----------|
+24-Nov-22 16:27:44: INFO : |  0 | [2019-08-30 23:30:00, 2019-08-31 03:30:00) | [2019-08-30 23:30:00, 2019-08-31 03:30:00) |   2019 |        19 |
+24-Nov-22 16:27:44: INFO : |  1 | [2019-08-30 19:00:00, 2019-08-30 23:00:00) | [2019-08-30 19:00:00, 2019-08-30 23:00:00) |   2019 |        19 |
+24-Nov-22 16:27:44: INFO : |  2 | [2019-08-29 14:30:00, 2019-08-29 18:30:00) | [2019-08-29 14:30:00, 2019-08-29 18:30:00) |   2019 |        19 |
+24-Nov-22 16:27:44: INFO : |  3 | nan                                        | [2019-07-25 22:01:48, 2019-07-26 01:01:48) |   2019 |        19 |
+24-Nov-22 16:27:44: INFO : |  4 | [2019-07-25 11:30:00, 2019-07-25 15:30:00) | [2019-07-25 11:30:00, 2019-07-25 15:30:00) |   2019 |        19 |
+24-Nov-22 16:27:44: INFO : +----+--------------------------------------------+--------------------------------------------+--------+-----------+
+24-Nov-22 16:27:44: INFO : * Define label and features:
+24-Nov-22 16:27:44: INFO : features: ['alg_jump_size', 'alg_jump_baseline_left', 'alg_jump_baseline_right', 'alg_jump_max', 'alg_jump_min', 'alg_jump_center', 'alg_jump_step_factor_180', 'alg_jump_step_factor_360', 'alg_jump_slope_factor_180', 'alg_jump_slope_factor_360']
+24-Nov-22 16:27:44: INFO : label: lbl_jump_type
+24-Nov-22 16:27:44: INFO : * Split dataset into test and train.
+24-Nov-22 16:27:44: INFO : Size X_train: (1031, 10)
+24-Nov-22 16:27:44: INFO : Size X_test: (442, 10)
+24-Nov-22 16:27:44: INFO : Size y_train: (1031,)
+24-Nov-22 16:27:44: INFO : Size y_test: (442,)
+24-Nov-22 16:27:44: INFO : * Start training a HistGradientBoostingClassifier:
+24-Nov-22 16:27:45: INFO : End training.
+24-Nov-22 16:27:45: INFO : * Predict on the test dataset...
+24-Nov-22 16:27:45: INFO : Done predictions.
+24-Nov-22 16:27:45: INFO : * Calculate performance metrics:
+24-Nov-22 16:27:45: INFO : Accuracy: 0.9230769230769231
+24-Nov-22 16:27:45: INFO : Confusion matrix:
+24-Nov-22 16:27:45: INFO : +---------------------------+---------------------------+-----------------------------+-----------------------+
+24-Nov-22 16:27:45: INFO : |                           |   ('pred', 'is_big_jump') |   ('pred', 'is_small_jump') |   ('pred', 'no_type') |
+24-Nov-22 16:27:45: INFO : |---------------------------+---------------------------+-----------------------------+-----------------------|
+24-Nov-22 16:27:45: INFO : | ('real', 'is_big_jump')   |                        91 |                           5 |                     3 |
+24-Nov-22 16:27:45: INFO : | ('real', 'is_small_jump') |                         3 |                          27 |                    14 |
+24-Nov-22 16:27:45: INFO : | ('real', 'no_type')       |                         2 |                           7 |                   290 |
+24-Nov-22 16:27:45: INFO : +---------------------------+---------------------------+-----------------------------+-----------------------+
+24-Nov-22 16:27:45: INFO : * Save data to disk:
+24-Nov-22 16:27:45: INFO : Model folder set at: /mnt/c/data/Generali-Parametrica-Alveari_data/models/y2022_11/m221124_002
+24-Nov-22 16:27:45: INFO : Saved model at: /mnt/c/data/Generali-Parametrica-Alveari_data/models/y2022_11/m221124_002/m221124_002.pickle
+24-Nov-22 16:27:45: INFO : * Save dataframe df_tot with features and predictions to disk:
+24-Nov-22 16:27:45: INFO : Saved df_tot as pickle at: /mnt/c/data/Generali-Parametrica-Alveari_data/models/y2022_11/m221124_002/df_tot.pickle
+24-Nov-22 16:27:45: INFO : Saved df_tot as csv at: /mnt/c/data/Generali-Parametrica-Alveari_data/models/y2022_11/m221124_002/df_tot.csv

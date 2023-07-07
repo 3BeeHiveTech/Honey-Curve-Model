@@ -6,12 +6,13 @@ from typing import Protocol
 
 import numpy as np
 import pandas as pd
-from pandas.core.dtypes.common import is_datetime_or_timedelta_dtype  # type: ignore[attr-defined]
+from importlib.resources import as_file, files
+from pathlib import Path, PosixPath
+import honey_curve
 
 import honey_curve.matrixops.interpolation as matint
-from honey_curve.models.y2022_11.m221124_001.loader import M221124_001
-from honey_curve.models.y2022_11.m221124_002.functions import calc_honey_curve
-from honey_curve.settings.pathmanager import PathManager
+from honey_curve.models.m221124_001.loader import M221124_001
+from honey_curve.models.m221124_002.functions import calc_honey_curve
 
 
 class JumpDetectionModel(Protocol):
@@ -37,8 +38,8 @@ class M221124_002:
 
         This model depends on the preprocessing done by the jump_detection_model, which is the
         is the m221124_001 model"""
-        self.pathman = PathManager()
-        self.path_to_model_folder = self.pathman.get_path_to_folder("models") / "y2022_11/m221124_002/"  # type: ignore[operator]
+        with as_file(files(honey_curve).joinpath("models", "m221124_002")) as path:
+            self.path_to_model_folder = Path(path)
         self.path_to_model = self.path_to_model_folder / "m221124_002.pickle"
         with open(self.path_to_model, "rb") as f:
             self.jump_classification_model = pickle.load(f)
