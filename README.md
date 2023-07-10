@@ -79,3 +79,40 @@ CRED_3BEE_PROD_DB_PORT="pppp"
 
 ## Usage
 **TODO ...**
+
+
+## Notes on the BareboneHistGradientBoostingClassifier model
+In order to have fewer dependencies and a lighter repository, the `HistGradientBoostingClassifier` 
+`sklearn` model has been converted into a `BareboneHistGradientBoostingClassifier`, following a 
+procedure similar to what is described here: [Speeding up a sklearn model pipeline to serve single predictions with very low latency](https://blog.telsemeyer.com/2020/08/13/speeding-up-a-sklearn-model-pipeline-to-serve-single-predictions-with-very-low-latency/).
+
+The code for the light version is in the `sklearn_light` module of this repo. The barebone version
+of the model has been generated from the full model with the following code:
+
+```python
+from honey_curve.models.m221124_002.loader import M221124_002
+from honey_curve.sklearn_light.gradient_boosting import BareboneHistGradientBoostingClassifier
+
+model = M221124_002()
+
+bmodel = BareboneHistGradientBoostingClassifier(
+    classes_=model.jump_classification_model.classes_,
+    _loss=model.jump_classification_model._loss,
+    _n_features=model.jump_classification_model._n_features,
+    n_trees_per_iteration_=model.jump_classification_model.n_trees_per_iteration_,
+    _baseline_prediction=model.jump_classification_model._baseline_prediction,
+    _predictors=model.jump_classification_model._predictors,
+    _bin_mapper=model.jump_classification_model._bin_mapper,
+    _check_feature_names=model.jump_classification_model._check_feature_names,
+)
+
+# Save model
+path_to_model = "m221124_002_barebone.pickle"
+with open(path_to_model, "wb") as f:
+    pickle.dump(bmodel, f)
+```
+
+In the most recent version, the `M221124_002` loader has been modified so that the barebone model 
+is loaded instad. 
+
+A check on the equivalence of the two models is performed by: `test_BareboneHistGradientBoostingClassifier()`.
