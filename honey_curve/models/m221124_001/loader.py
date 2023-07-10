@@ -8,9 +8,7 @@ from pandas.core.dtypes.common import is_datetime_or_timedelta_dtype  # type: ig
 
 import honey_curve.timeseries.outlier as timout
 import honey_curve.timeseries.resampling as timres
-from honey_curve.models.m221124_001.algorithm import (
-    apply_weight_jump_detection_algorithm_v03,
-)
+from honey_curve.models.m221124_001.algorithm import apply_weight_jump_detection_algorithm_v03
 
 
 class M221124_001:

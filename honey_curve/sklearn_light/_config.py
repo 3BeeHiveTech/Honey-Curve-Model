@@ -1,7 +1,6 @@
 """Global configuration state and functions for management
 """
 import os
-from contextlib import contextmanager as contextmanager
 import threading
 
 _global_config = {

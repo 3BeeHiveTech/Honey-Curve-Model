@@ -174,7 +174,7 @@ class Humidities(Base):
 
     def __repr__(self) -> str:
         return f"Humidities(id={self.id!r}, hive_id={self.hive_id!r}, value={self.value!r})"
-    
+
 
 class Devices(Base):
     """threebee_production.devices table."""

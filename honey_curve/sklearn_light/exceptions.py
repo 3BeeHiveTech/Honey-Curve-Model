@@ -38,14 +38,6 @@ class NotFittedError(ValueError, AttributeError):
     """
 
 
-# class ConvergenceWarning(UserWarning):
-#     """Custom warning to capture convergence problems
-
-#     .. versionchanged:: 0.18
-#        Moved from sklearn.utils.
-#     """
-
-
 class DataConversionWarning(UserWarning):
     """Warning used to notify implicit data conversions happening in the code.
 
@@ -62,69 +54,3 @@ class DataConversionWarning(UserWarning):
     .. versionchanged:: 0.18
        Moved from sklearn.utils.validation.
     """
-
-
-# class DataDimensionalityWarning(UserWarning):
-#     """Custom warning to notify potential issues with data dimensionality.
-
-#     For example, in random projection, this warning is raised when the
-#     number of components, which quantifies the dimensionality of the target
-#     projection space, is higher than the number of features, which quantifies
-#     the dimensionality of the original source space, to imply that the
-#     dimensionality of the problem will not be reduced.
-
-#     .. versionchanged:: 0.18
-#        Moved from sklearn.utils.
-#     """
-
-
-# class EfficiencyWarning(UserWarning):
-#     """Warning used to notify the user of inefficient computation.
-
-#     This warning notifies the user that the efficiency may not be optimal due
-#     to some reason which may be included as a part of the warning message.
-#     This may be subclassed into a more specific Warning class.
-
-#     .. versionadded:: 0.18
-#     """
-
-
-# class FitFailedWarning(RuntimeWarning):
-#     """Warning class used if there is an error while fitting the estimator.
-
-#     This Warning is used in meta estimators GridSearchCV and RandomizedSearchCV
-#     and the cross-validation helper function cross_val_score to warn when there
-#     is an error while fitting the estimator.
-
-#     .. versionchanged:: 0.18
-#        Moved from sklearn.cross_validation.
-#     """
-
-
-# class SkipTestWarning(UserWarning):
-#     """Warning class used to notify the user of a test that was skipped.
-
-#     For example, one of the estimator checks requires a pandas import.
-#     If the pandas package cannot be imported, the test will be skipped rather
-#     than register as a failure.
-#     """
-
-
-# class UndefinedMetricWarning(UserWarning):
-#     """Warning used when the metric is invalid
-
-#     .. versionchanged:: 0.18
-#        Moved from sklearn.base.
-#     """
-
-
-# class PositiveSpectrumWarning(UserWarning):
-#     """Warning raised when the eigenvalues of a PSD matrix have issues
-
-#     This warning is typically raised by ``_check_psd_eigenvalues`` when the
-#     eigenvalues of a positive semidefinite (PSD) matrix such as a gram matrix
-#     (kernel) present significant negative eigenvalues, or bad conditioning i.e.
-#     very small non-zero eigenvalues compared to the largest eigenvalue.
-
-#     .. versionadded:: 0.22
-#     """

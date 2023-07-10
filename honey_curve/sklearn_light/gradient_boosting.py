@@ -3,10 +3,10 @@
 
 from abc import ABC, abstractmethod
 from functools import partial
+
 import numpy as np
 
-
-from honey_curve.sklearn_light.validation import check_array, _check_y, check_X_y, _num_features
+from honey_curve.sklearn_light.validation import _check_y, _num_features, check_array, check_X_y
 
 X_DTYPE = np.float64
 

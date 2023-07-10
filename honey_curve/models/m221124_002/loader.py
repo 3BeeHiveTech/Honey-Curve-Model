@@ -2,14 +2,14 @@
 Loader function for the m221124_002 model.
 """
 import pickle
+from importlib.resources import as_file, files
+from pathlib import Path
 from typing import Protocol
 
 import numpy as np
 import pandas as pd
-from importlib.resources import as_file, files
-from pathlib import Path, PosixPath
-import honey_curve
 
+import honey_curve
 import honey_curve.matrixops.interpolation as matint
 from honey_curve.models.m221124_001.loader import M221124_001
 from honey_curve.models.m221124_002.functions import calc_honey_curve
@@ -40,7 +40,9 @@ class M221124_002:
         is the m221124_001 model"""
         with as_file(files(honey_curve).joinpath("models", "m221124_002")) as path:
             self.path_to_model_folder = Path(path)
-        self.path_to_model = self.path_to_model_folder / "m221124_002.pickle"
+        self.path_to_model = (
+            self.path_to_model_folder / "m221124_002_barebone.pickle"
+        )  # switch to the barebone model
         with open(self.path_to_model, "rb") as f:
             self.jump_classification_model = pickle.load(f)
         self.jump_detection_model = jump_detection_model
