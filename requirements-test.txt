@@ -1,7 +1,14 @@
-# This requirements are for development and testing only, not for production.
+# Testing packages
 ipykernel
 pytest
 flake8
 black
 isort
 autoflake
+
+# Plotting packages
+plotly>=5.9.0,<6.0
+matplotlib>=3.7.1,<3.8
+
+# Full version of the custom lightweight packages
+scikit-learn==1.1.2
