@@ -142,7 +142,13 @@ model = M221124_002()
 df_weights_honey = model.preprocess_and_tag_and_calc_honey(df_weights_raw)
 
 # %%
-df_weights_honey
+df_weights_honey.head()
+
+# %%
+df_weights_honey.shape
+
+# %% tags=[]
+model.jump_classification_model
 
 # %%
 
