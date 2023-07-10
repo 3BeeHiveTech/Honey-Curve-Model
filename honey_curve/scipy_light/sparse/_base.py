@@ -428,7 +428,7 @@ class _spbase:
         Examples
         --------
         >>> import numpy as np
-        >>> from scipy.sparse import csr_array
+        >>> from scipy_light.sparse import csr_array
         >>> A = csr_array([[1, 2, 0], [0, 0, 3], [4, 0, 5]])
         >>> v = np.array([1, 0, -1])
         >>> A.dot(v)
@@ -851,7 +851,7 @@ class _spbase:
 
         Examples
         --------
-        >>> from scipy.sparse import csr_array
+        >>> from scipy_light.sparse import csr_array
         >>> A = csr_array([[1,2,0],[0,0,3],[4,0,5]])
         >>> A.nonzero()
         (array([0, 0, 1, 2, 2]), array([0, 1, 2, 0, 2]))
@@ -1205,7 +1205,7 @@ class _spbase:
 
         Examples
         --------
-        >>> from scipy.sparse import csr_array
+        >>> from scipy_light.sparse import csr_array
         >>> A = csr_array([[1, 2, 0], [0, 0, 3], [4, 0, 5]])
         >>> A.diagonal()
         array([1, 0, 5])
@@ -1302,7 +1302,7 @@ class _spbase:
         expensive and undesirable for users. The array API changes this
         behaviour.
 
-        See discussion: https://github.com/scipy/scipy/issues/16774
+        See discussion: https://github.com/scipy_light/scipy_light/issues/16774
 
         The get_index_dtype import is due to implementation details of the test
         suite. It allows the decorator ``with_64bit_maxval_limit`` to mock a
@@ -1315,7 +1315,7 @@ class _spbase:
         return get_index_dtype(arrays, maxval, (check_contents and not self._is_array))
 
     ## All methods below are deprecated and should be removed in
-    ## scipy 1.13.0
+    ## scipy_light 1.13.0
     ##
     ## Also uncomment the definition of shape above.
 
@@ -1323,7 +1323,7 @@ class _spbase:
         """Get shape of a sparse array.
 
         .. deprecated:: 1.11.0
-           This method will be removed in SciPy 1.13.0.
+           This method will be removed in scipy_light 1.13.0.
            Use `X.shape` instead.
         """
         msg = "`get_shape` is deprecated and will be removed in v1.13.0; " "use `X.shape` instead."
@@ -1335,7 +1335,7 @@ class _spbase:
         """See `reshape`.
 
         .. deprecated:: 1.11.0
-           This method will be removed in SciPy 1.13.0.
+           This method will be removed in scipy_light 1.13.0.
            Use `X.reshape` instead.
         """
         msg = (
@@ -1354,7 +1354,7 @@ class _spbase:
         fset=set_shape,
         doc="""The shape of the array.
 
-Note that, starting in SciPy 1.13.0, this property will no longer be
+Note that, starting in scipy_light 1.13.0, this property will no longer be
 settable. To change the array shape, use `X.reshape` instead.
 """,
     )  # noqa: F811
@@ -1364,7 +1364,7 @@ settable. To change the array shape, use `X.reshape` instead.
 
         .. deprecated:: 1.11.0
            This method is for internal use only, and will be removed from the
-           public API in SciPy 1.13.0.
+           public API in scipy_light 1.13.0.
         """
         msg = (
             "`asfptype` is an internal function, and is deprecated "
@@ -1378,7 +1378,7 @@ settable. To change the array shape, use `X.reshape` instead.
 
         .. deprecated:: 1.11.0
            This method is for internal use only, and will be removed from the
-           public API in SciPy 1.13.0.
+           public API in scipy_light 1.13.0.
         """
         msg = (
             "`getmaxprint` is an internal function, and is deprecated "
@@ -1391,7 +1391,7 @@ settable. To change the array shape, use `X.reshape` instead.
         """Matrix storage format.
 
         .. deprecated:: 1.11.0
-           This method will be removed in SciPy 1.13.0.
+           This method will be removed in scipy_light 1.13.0.
            Use `X.format` instead.
         """
         msg = (
@@ -1404,7 +1404,7 @@ settable. To change the array shape, use `X.reshape` instead.
         """Number of stored values, including explicit zeros.
 
         .. deprecated:: 1.11.0
-           This method will be removed in SciPy 1.13.0. Use `X.nnz`
+           This method will be removed in scipy_light 1.13.0. Use `X.nnz`
            instead.  The `axis` argument will no longer be supported;
            please let us know if you still need this functionality.
 
@@ -1426,7 +1426,7 @@ settable. To change the array shape, use `X.reshape` instead.
         """Return the Hermitian transpose of this array.
 
         .. deprecated:: 1.11.0
-           This method will be removed in SciPy 1.13.0.
+           This method will be removed in scipy_light 1.13.0.
            Use `X.conj().T` instead.
         """
         msg = "`getH` is deprecated and will be removed in v1.13.0; " "use `X.conj().T` instead."
@@ -1438,7 +1438,7 @@ settable. To change the array shape, use `X.reshape` instead.
         array (column vector).
 
         .. deprecated:: 1.11.0
-           This method will be removed in SciPy 1.13.0.
+           This method will be removed in scipy_light 1.13.0.
            Use array indexing instead.
         """
         msg = (
@@ -1452,7 +1452,7 @@ settable. To change the array shape, use `X.reshape` instead.
         array (row vector).
 
         .. deprecated:: 1.11.0
-           This method will be removed in SciPy 1.13.0.
+           This method will be removed in scipy_light 1.13.0.
            Use array indexing instead.
         """
         msg = "`getrow` is deprecated and will be removed in v1.13.0; " f"use `X[[{i}]]` instead."
@@ -1464,7 +1464,6 @@ settable. To change the array shape, use `X.reshape` instead.
 
 class sparray:
     """A namespace class to separate sparray from spmatrix"""
-
 
 
 sparray.__doc__ = _spbase.__doc__
@@ -1486,7 +1485,7 @@ def issparse(x):
     Examples
     --------
     >>> import numpy as np
-    >>> from scipy.sparse import csr_array, csr_matrix, issparse
+    >>> from scipy_light.sparse import csr_array, csr_matrix, issparse
     >>> issparse(csr_matrix([[5]]))
     True
     >>> issparse(csr_array([[5]]))
@@ -1515,7 +1514,7 @@ def isspmatrix(x):
     Examples
     --------
     >>> import numpy as np
-    >>> from scipy.sparse import csr_array, csr_matrix, isspmatrix
+    >>> from scipy_light.sparse import csr_array, csr_matrix, isspmatrix
     >>> isspmatrix(csr_matrix([[5]]))
     True
     >>> isspmatrix(csr_array([[5]]))

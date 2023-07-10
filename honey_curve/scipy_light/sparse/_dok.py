@@ -72,7 +72,7 @@ class _dok_base(_spbase, IndexMixin, dict):
     Examples
     --------
     >>> import numpy as np
-    >>> from scipy.sparse import dok_array
+    >>> from scipy_light.sparse import dok_array
     >>> S = dok_array((5, 5), dtype=np.float32)
     >>> for i in range(5):
     ...     for j in range(5):
@@ -442,7 +442,7 @@ def isspmatrix_dok(x):
 
     Examples
     --------
-    >>> from scipy.sparse import dok_array, dok_matrix, coo_matrix, isspmatrix_dok
+    >>> from scipy_light.sparse import dok_array, dok_matrix, coo_matrix, isspmatrix_dok
     >>> isspmatrix_dok(dok_matrix([[5]]))
     True
     >>> isspmatrix_dok(dok_array([[5]]))

@@ -5,7 +5,7 @@ import operator
 from warnings import warn
 
 import numpy as np
-from scipy._lib._util import _prune_array
+from honey_curve.scipy_light.sparse._util import _prune_array
 
 from . import _sparsetools
 from ._base import SparseEfficiencyWarning, _spbase, issparse

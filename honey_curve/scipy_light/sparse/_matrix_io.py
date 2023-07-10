@@ -1,5 +1,5 @@
 import numpy as np
-import scipy.sparse
+import honey_curve.scipy_light.sparse
 
 __all__ = ["save_npz", "load_npz"]
 
@@ -25,7 +25,7 @@ def save_npz(file, matrix, compressed=True):
 
     See Also
     --------
-    scipy.sparse.load_npz: Load a sparse matrix from a file using ``.npz`` format.
+    scipy_light.sparse.load_npz: Load a sparse matrix from a file using ``.npz`` format.
     numpy.savez: Save several arrays into a ``.npz`` archive.
     numpy.savez_compressed : Save several arrays into a compressed ``.npz`` archive.
 
@@ -34,8 +34,8 @@ def save_npz(file, matrix, compressed=True):
     Store sparse matrix to disk, and load it again:
 
     >>> import numpy as np
-    >>> import scipy.sparse
-    >>> sparse_matrix = scipy.sparse.csc_matrix(np.array([[0, 0, 3], [4, 0, 0]]))
+    >>> import scipy_light.sparse
+    >>> sparse_matrix = scipy_light.sparse.csc_matrix(np.array([[0, 0, 3], [4, 0, 0]]))
     >>> sparse_matrix
     <2x3 sparse matrix of type '<class 'numpy.int64'>'
        with 2 stored elements in Compressed Sparse Column format>
@@ -43,8 +43,8 @@ def save_npz(file, matrix, compressed=True):
     array([[0, 0, 3],
            [4, 0, 0]], dtype=int64)
 
-    >>> scipy.sparse.save_npz('/tmp/sparse_matrix.npz', sparse_matrix)
-    >>> sparse_matrix = scipy.sparse.load_npz('/tmp/sparse_matrix.npz')
+    >>> scipy_light.sparse.save_npz('/tmp/sparse_matrix.npz', sparse_matrix)
+    >>> sparse_matrix = scipy_light.sparse.load_npz('/tmp/sparse_matrix.npz')
 
     >>> sparse_matrix
     <2x3 sparse matrix of type '<class 'numpy.int64'>'
@@ -92,7 +92,7 @@ def load_npz(file):
 
     See Also
     --------
-    scipy.sparse.save_npz: Save a sparse matrix to a file using ``.npz`` format.
+    scipy_light.sparse.save_npz: Save a sparse matrix to a file using ``.npz`` format.
     numpy.load: Load several arrays from a ``.npz`` archive.
 
     Examples
@@ -100,8 +100,8 @@ def load_npz(file):
     Store sparse matrix to disk, and load it again:
 
     >>> import numpy as np
-    >>> import scipy.sparse
-    >>> sparse_matrix = scipy.sparse.csc_matrix(np.array([[0, 0, 3], [4, 0, 0]]))
+    >>> import scipy_light.sparse
+    >>> sparse_matrix = scipy_light.sparse.csc_matrix(np.array([[0, 0, 3], [4, 0, 0]]))
     >>> sparse_matrix
     <2x3 sparse matrix of type '<class 'numpy.int64'>'
        with 2 stored elements in Compressed Sparse Column format>
@@ -109,8 +109,8 @@ def load_npz(file):
     array([[0, 0, 3],
            [4, 0, 0]], dtype=int64)
 
-    >>> scipy.sparse.save_npz('/tmp/sparse_matrix.npz', sparse_matrix)
-    >>> sparse_matrix = scipy.sparse.load_npz('/tmp/sparse_matrix.npz')
+    >>> scipy_light.sparse.save_npz('/tmp/sparse_matrix.npz', sparse_matrix)
+    >>> sparse_matrix = scipy_light.sparse.load_npz('/tmp/sparse_matrix.npz')
 
     >>> sparse_matrix
     <2x3 sparse matrix of type '<class 'numpy.int64'>'
@@ -130,11 +130,11 @@ def load_npz(file):
 
         if not isinstance(matrix_format, str):
             # Play safe with Python 2 vs 3 backward compatibility;
-            # files saved with SciPy < 1.0.0 may contain unicode or bytes.
+            # files saved with scipy_light < 1.0.0 may contain unicode or bytes.
             matrix_format = matrix_format.decode("ascii")
 
         try:
-            cls = getattr(scipy.sparse, f"{matrix_format}_matrix")
+            cls = getattr(scipy_light.sparse, f"{matrix_format}_matrix")
         except AttributeError as e:
             raise ValueError(f'Unknown matrix format "{matrix_format}"') from e
 

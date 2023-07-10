@@ -81,7 +81,7 @@ class _csr_base(_cs_matrix):
     --------
 
     >>> import numpy as np
-    >>> from scipy.sparse import csr_array
+    >>> from scipy_light.sparse import csr_array
     >>> csr_array((3, 4), dtype=np.int8).toarray()
     array([[0, 0, 0, 0],
            [0, 0, 0, 0],
@@ -359,7 +359,7 @@ def isspmatrix_csr(x):
 
     Examples
     --------
-    >>> from scipy.sparse import csr_array, csr_matrix, coo_matrix, isspmatrix_csr
+    >>> from scipy_light.sparse import csr_array, csr_matrix, coo_matrix, isspmatrix_csr
     >>> isspmatrix_csr(csr_matrix([[5]]))
     True
     >>> isspmatrix_csr(csr_array([[5]]))

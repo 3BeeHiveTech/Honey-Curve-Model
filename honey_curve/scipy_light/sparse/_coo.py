@@ -103,7 +103,7 @@ class _coo_base(_data_matrix, _minmax_mixin):
 
     >>> # Constructing an empty matrix
     >>> import numpy as np
-    >>> from scipy.sparse import coo_array
+    >>> from scipy_light.sparse import coo_array
     >>> coo_array((3, 4), dtype=np.int8).toarray()
     array([[0, 0, 0, 0],
            [0, 0, 0, 0],
@@ -344,7 +344,7 @@ class _coo_base(_data_matrix, _minmax_mixin):
         Examples
         --------
         >>> from numpy import array
-        >>> from scipy.sparse import coo_array
+        >>> from scipy_light.sparse import coo_array
         >>> row  = array([0, 0, 1, 3, 1, 0, 0])
         >>> col  = array([0, 2, 1, 3, 1, 0, 0])
         >>> data = array([1, 1, 1, 1, 1, 1, 1])
@@ -383,7 +383,7 @@ class _coo_base(_data_matrix, _minmax_mixin):
         Examples
         --------
         >>> from numpy import array
-        >>> from scipy.sparse import coo_array
+        >>> from scipy_light.sparse import coo_array
         >>> row  = array([0, 0, 1, 3, 1, 0, 0])
         >>> col  = array([0, 2, 1, 3, 1, 0, 0])
         >>> data = array([1, 1, 1, 1, 1, 1, 1])
@@ -607,7 +607,7 @@ def isspmatrix_coo(x):
 
     Examples
     --------
-    >>> from scipy.sparse import coo_array, coo_matrix, csr_matrix, isspmatrix_coo
+    >>> from scipy_light.sparse import coo_array, coo_matrix, csr_matrix, isspmatrix_coo
     >>> isspmatrix_coo(coo_matrix([[5]]))
     True
     >>> isspmatrix_coo(coo_array([[5]]))

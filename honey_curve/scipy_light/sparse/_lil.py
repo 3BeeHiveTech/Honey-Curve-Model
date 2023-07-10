@@ -552,7 +552,7 @@ def isspmatrix_lil(x):
 
     Examples
     --------
-    >>> from scipy.sparse import lil_array, lil_matrix, coo_matrix, isspmatrix_lil
+    >>> from scipy_light.sparse import lil_array, lil_matrix, coo_matrix, isspmatrix_lil
     >>> isspmatrix_lil(lil_matrix([[5]]))
     True
     >>> isspmatrix_lil(lil_array([[5]]))

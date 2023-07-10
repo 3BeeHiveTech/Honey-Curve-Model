@@ -56,7 +56,7 @@ class _dia_base(_data_matrix):
     --------
 
     >>> import numpy as np
-    >>> from scipy.sparse import dia_array
+    >>> from scipy_light.sparse import dia_array
     >>> dia_array((3, 4), dtype=np.int8).toarray()
     array([[0, 0, 0, 0],
            [0, 0, 0, 0],
@@ -70,7 +70,7 @@ class _dia_base(_data_matrix):
            [0, 2, 3, 0],
            [0, 0, 3, 4]])
 
-    >>> from scipy.sparse import dia_array
+    >>> from scipy_light.sparse import dia_array
     >>> n = 10
     >>> ex = np.ones(n)
     >>> data = np.array([ex, 2 * ex, ex])
@@ -465,7 +465,7 @@ def isspmatrix_dia(x):
 
     Examples
     --------
-    >>> from scipy.sparse import dia_array, dia_matrix, coo_matrix, isspmatrix_dia
+    >>> from scipy_light.sparse import dia_array, dia_matrix, coo_matrix, isspmatrix_dia
     >>> isspmatrix_dia(dia_matrix([[5]]))
     True
     >>> isspmatrix_dia(dia_array([[5]]))

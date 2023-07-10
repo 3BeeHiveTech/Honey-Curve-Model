@@ -6,7 +6,7 @@ import sys
 from math import prod
 
 import numpy as np
-import scipy.sparse as sp
+import honey_curve.scipy_light.sparse as sp
 
 __all__ = [
     "upcast",

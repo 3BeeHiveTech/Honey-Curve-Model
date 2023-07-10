@@ -22,7 +22,7 @@ import numbers
 from functools import partial
 
 import numpy as np
-from scipy._lib._util import check_random_state, rng_integers
+from honey_curve.scipy_light.sparse._util import check_random_state, rng_integers
 
 from ._base import issparse
 from ._bsr import bsr_matrix
@@ -64,7 +64,7 @@ def spdiags(data, diags, m=None, n=None, format=None):
     Examples
     --------
     >>> import numpy as np
-    >>> from scipy.sparse import spdiags
+    >>> from scipy_light.sparse import spdiags
     >>> data = np.array([[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]])
     >>> diags = np.array([0, -1, 2])
     >>> spdiags(data, diags, 4, 4).toarray()
@@ -126,7 +126,7 @@ def diags(diagonals, offsets=0, shape=None, format=None, dtype=None):
 
     Examples
     --------
-    >>> from scipy.sparse import diags
+    >>> from scipy_light.sparse import diags
     >>> diagonals = [[1, 2, 3, 4], [1, 2, 3], [1, 2]]
     >>> diags(diagonals, [0, -1, 2]).toarray()
     array([[1, 0, 1, 0],
@@ -223,7 +223,7 @@ def identity(n, dtype="d", format=None):
 
     Examples
     --------
-    >>> from scipy.sparse import identity
+    >>> from scipy_light.sparse import identity
     >>> identity(3).toarray()
     array([[ 1.,  0.,  0.],
            [ 0.,  1.,  0.],
@@ -258,7 +258,7 @@ def eye(m, n=None, k=0, dtype=float, format=None):
     Examples
     --------
     >>> import numpy as np
-    >>> from scipy import sparse
+    >>> from scipy_light import sparse
     >>> sparse.eye(3).toarray()
     array([[ 1.,  0.,  0.],
            [ 0.,  1.,  0.],
@@ -312,7 +312,7 @@ def kron(A, B, format=None):
     Examples
     --------
     >>> import numpy as np
-    >>> from scipy import sparse
+    >>> from scipy_light import sparse
     >>> A = sparse.csr_matrix(np.array([[0, 2], [5, 0]]))
     >>> B = sparse.csr_matrix(np.array([[1, 2], [3, 4]]))
     >>> sparse.kron(A, B).toarray()
@@ -537,7 +537,7 @@ def hstack(blocks, format=None, dtype=None):
 
     Examples
     --------
-    >>> from scipy.sparse import coo_matrix, hstack
+    >>> from scipy_light.sparse import coo_matrix, hstack
     >>> A = coo_matrix([[1, 2], [3, 4]])
     >>> B = coo_matrix([[5], [6]])
     >>> hstack([A,B]).toarray()
@@ -570,7 +570,7 @@ def vstack(blocks, format=None, dtype=None):
 
     Examples
     --------
-    >>> from scipy.sparse import coo_matrix, vstack
+    >>> from scipy_light.sparse import coo_matrix, vstack
     >>> A = coo_matrix([[1, 2], [3, 4]])
     >>> B = coo_matrix([[5, 6]])
     >>> vstack([A, B]).toarray()
@@ -609,7 +609,7 @@ def bmat(blocks, format=None, dtype=None):
 
     Examples
     --------
-    >>> from scipy.sparse import coo_matrix, bmat
+    >>> from scipy_light.sparse import coo_matrix, bmat
     >>> A = coo_matrix([[1, 2], [3, 4]])
     >>> B = coo_matrix([[5], [6]])
     >>> C = coo_matrix([[7]])
@@ -751,7 +751,7 @@ def block_diag(mats, format=None, dtype=None):
 
     Examples
     --------
-    >>> from scipy.sparse import coo_matrix, block_diag
+    >>> from scipy_light.sparse import coo_matrix, block_diag
     >>> A = coo_matrix([[1, 2], [3, 4]])
     >>> B = coo_matrix([[5], [6]])
     >>> C = coo_matrix([[7]])
@@ -836,8 +836,8 @@ def random(m, n, density=0.01, format="coo", dtype=None, random_state=None, data
 
     Examples
     --------
-    >>> from scipy.sparse import random
-    >>> from scipy import stats
+    >>> from scipy_light.sparse import random
+    >>> from scipy_light import stats
     >>> from numpy.random import default_rng
     >>> rng = default_rng()
     >>> rvs = stats.poisson(25, loc=10).rvs
@@ -847,8 +847,8 @@ def random(m, n, density=0.01, format="coo", dtype=None, random_state=None, data
            [  0.,   0.,   0.,   0.],
            [  0.,   0.,  36.,   0.]])
 
-    >>> from scipy.sparse import random
-    >>> from scipy.stats import rv_continuous
+    >>> from scipy_light.sparse import random
+    >>> from scipy_light.stats import rv_continuous
     >>> class CustomDistribution(rv_continuous):
     ...     def _rvs(self,  size=None, random_state=None):
     ...         return random_state.standard_normal(size)
@@ -942,12 +942,12 @@ def rand(m, n, density=0.01, format="coo", dtype=None, random_state=None):
 
     See Also
     --------
-    scipy.sparse.random : Similar function that allows a user-specified random
+    scipy_light.sparse.random : Similar function that allows a user-specified random
         data source.
 
     Examples
     --------
-    >>> from scipy.sparse import rand
+    >>> from scipy_light.sparse import rand
     >>> matrix = rand(3, 4, density=0.25, format="csr", random_state=42)
     >>> matrix
     <3x4 sparse matrix of type '<class 'numpy.float64'>'

@@ -83,7 +83,7 @@ class _csc_base(_cs_matrix):
     --------
 
     >>> import numpy as np
-    >>> from scipy.sparse import csc_array
+    >>> from scipy_light.sparse import csc_array
     >>> csc_array((3, 4), dtype=np.int8).toarray()
     array([[0, 0, 0, 0],
            [0, 0, 0, 0],
@@ -251,7 +251,7 @@ def isspmatrix_csc(x):
 
     Examples
     --------
-    >>> from scipy.sparse import csc_array, csc_matrix, coo_matrix, isspmatrix_csc
+    >>> from scipy_light.sparse import csc_array, csc_matrix, coo_matrix, isspmatrix_csc
     >>> isspmatrix_csc(csc_matrix([[5]]))
     True
     >>> isspmatrix_csc(csc_array([[5]]))

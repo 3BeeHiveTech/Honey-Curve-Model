@@ -100,7 +100,7 @@ class _bsr_base(_cs_matrix, _minmax_mixin):
 
     Examples
     --------
-    >>> from scipy.sparse import bsr_array
+    >>> from scipy_light.sparse import bsr_array
     >>> import numpy as np
     >>> bsr_array((3, 4), dtype=np.int8).toarray()
     array([[0, 0, 0, 0],
@@ -754,7 +754,7 @@ def isspmatrix_bsr(x):
 
     Examples
     --------
-    >>> from scipy.sparse import bsr_array, bsr_matrix, csr_matrix, isspmatrix_bsr
+    >>> from scipy_light.sparse import bsr_array, bsr_matrix, csr_matrix, isspmatrix_bsr
     >>> isspmatrix_bsr(bsr_matrix([[5]]))
     True
     >>> isspmatrix_bsr(bsr_array([[5]]))

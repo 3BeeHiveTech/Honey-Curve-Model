@@ -1,9 +1,9 @@
 """
 =====================================
-Sparse matrices (:mod:`scipy.sparse`)
+Sparse matrices (:mod:`scipy_light.sparse`)
 =====================================
 
-.. currentmodule:: scipy.sparse
+.. currentmodule:: scipy_light.sparse
 
 .. toctree::
    :hidden:
@@ -11,7 +11,7 @@ Sparse matrices (:mod:`scipy.sparse`)
    sparse.csgraph
    sparse.linalg
 
-SciPy 2-D sparse array package for numeric data.
+scipy_light 2-D sparse array package for numeric data.
 
 .. note::
 
@@ -162,7 +162,7 @@ may also be used to efficiently construct matrices. Despite their
 similarity to NumPy arrays, it is **strongly discouraged** to use NumPy
 functions directly on these matrices because NumPy may not properly convert
 them for computations, leading to unexpected (and incorrect) results. If you
-do want to apply a NumPy function to these matrices, first check if SciPy has
+do want to apply a NumPy function to these matrices, first check if scipy_light has
 its own implementation for the given sparse matrix class, or **convert the
 sparse matrix to a NumPy array** (e.g., using the `toarray()` method of the
 class) first before applying the method.
@@ -181,7 +181,7 @@ To do a vector product between a sparse matrix and a vector simply use
 the matrix `dot` method, as described in its docstring:
 
 >>> import numpy as np
->>> from scipy.sparse import csr_matrix
+>>> from scipy_light.sparse import csr_matrix
 >>> A = csr_matrix([[1, 2, 0], [0, 0, 3], [4, 0, 5]])
 >>> v = np.array([1, 0, -1])
 >>> A.dot(v)
@@ -202,8 +202,8 @@ Example 1
 ---------
 Construct a 1000x1000 lil_matrix and add some values to it:
 
->>> from scipy.sparse import lil_matrix
->>> from scipy.sparse.linalg import spsolve
+>>> from scipy_light.sparse import lil_matrix
+>>> from scipy_light.sparse.linalg import spsolve
 >>> from numpy.linalg import solve, norm
 >>> from numpy.random import rand
 
@@ -237,7 +237,7 @@ Example 2
 
 Construct a matrix in COO format:
 
->>> from scipy import sparse
+>>> from scipy_light import sparse
 >>> from numpy import array
 >>> I = array([0,3,1,0])
 >>> J = array([0,3,1,2])
@@ -288,7 +288,7 @@ __all__ = [s for s in dir() if not s.startswith("_")]
 # Filter PendingDeprecationWarning for np.matrix introduced with numpy 1.15
 _warnings.filterwarnings("ignore", message="the matrix subclass is not the recommended way")
 
-from scipy._lib._testutils import PytestTester
+# from scipy_light._lib._testutils import PytestTester
 
-test = PytestTester(__name__)
-del PytestTester
+# test = PytestTester(__name__)
+# del PytestTester
