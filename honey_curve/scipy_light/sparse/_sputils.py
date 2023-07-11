@@ -6,6 +6,7 @@ import sys
 from math import prod
 
 import numpy as np
+
 import honey_curve.scipy_light.sparse as sp
 
 __all__ = [

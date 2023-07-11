@@ -5,6 +5,7 @@ import operator
 from warnings import warn
 
 import numpy as np
+
 from honey_curve.scipy_light.sparse._util import _prune_array
 
 from . import _sparsetools

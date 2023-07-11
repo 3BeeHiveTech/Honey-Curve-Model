@@ -1,4 +1,5 @@
 import numpy as np
+
 import honey_curve.scipy_light.sparse
 
 __all__ = ["save_npz", "load_npz"]

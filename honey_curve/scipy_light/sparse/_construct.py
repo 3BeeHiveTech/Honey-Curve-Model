@@ -22,6 +22,7 @@ import numbers
 from functools import partial
 
 import numpy as np
+
 from honey_curve.scipy_light.sparse._util import check_random_state, rng_integers
 
 from ._base import issparse

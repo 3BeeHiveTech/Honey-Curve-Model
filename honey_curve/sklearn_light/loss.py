@@ -15,9 +15,7 @@ classification.
 #   - SGDRegressor, SGDClassifier
 # - Replace link module of GLMs.
 
-from .link import (
-    MultinomialLogit,
-)
+from .link import MultinomialLogit
 
 
 class BareboneHalfMultinomialLoss:

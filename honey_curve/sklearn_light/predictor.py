@@ -6,9 +6,11 @@ import numpy as np
 
 Y_DTYPE = np.float64
 
-from honey_curve.sklearn_light._predictor import _predict_from_raw_data
-from honey_curve.sklearn_light._predictor import _predict_from_binned_data
-from honey_curve.sklearn_light._predictor import _compute_partial_dependence
+from honey_curve.sklearn_light._predictor import (
+    _compute_partial_dependence,
+    _predict_from_binned_data,
+    _predict_from_raw_data,
+)
 
 
 class BareboneTreePredictor:

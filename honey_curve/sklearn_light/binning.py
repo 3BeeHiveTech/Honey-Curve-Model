@@ -9,8 +9,8 @@ approximately the same number of samples.
 
 import numpy as np
 
-from .common import X_BITSET_INNER_DTYPE
 from ._bitset import set_bitset_memoryview
+from .common import X_BITSET_INNER_DTYPE
 
 
 class _BareboneBinMapper:
