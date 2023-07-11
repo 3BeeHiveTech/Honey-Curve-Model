@@ -17,7 +17,7 @@ from inspect import isclass
 import numpy as np
 from numpy.core.numeric import ComplexWarning  # type: ignore
 
-# import scipy.sparse as sp
+# import scipy_light.sparse as sp
 import honey_curve.scipy_light.sparse as sp
 from honey_curve.sklearn_light._config import get_config as _get_config
 from honey_curve.sklearn_light.exceptions import DataConversionWarning, NotFittedError
@@ -589,7 +589,7 @@ def check_array(
                 raise ValueError(
                     "Pandas DataFrame with mixed sparse extension arrays "
                     "generated a sparse matrix with object dtype which "
-                    "can not be converted to a scipy sparse matrix."
+                    "can not be converted to a scipy_light sparse matrix."
                     "Sparse extension arrays should all have the same "
                     "numeric type."
                 )

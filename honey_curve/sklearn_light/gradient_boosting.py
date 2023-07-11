@@ -125,7 +125,7 @@ class BareboneBaseEstimator:
             The validated input. A tuple is returned if both `X` and `y` are
             validated.
         """
-        self._check_feature_names(X, reset=reset)
+        # self._check_feature_names(X, reset=reset)
 
         if y is None and self._get_tags()["requires_y"]:
             raise ValueError(

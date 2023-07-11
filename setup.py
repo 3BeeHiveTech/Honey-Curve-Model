@@ -2,6 +2,10 @@
 import io
 import os
 from setuptools import find_packages, setup
+from setuptools import setup
+from Cython.Build import cythonize
+from setuptools import setup, Extension, Command
+import numpy as np
 
 
 def read(*paths, **kwargs):
@@ -41,4 +45,13 @@ setup(
     install_requires=read_requirements("requirements.txt"),
     entry_points={"console_scripts": ["honey_curve = honey_curve.__main__:main"]},
     extras_require={"test": read_requirements("requirements-test.txt")},
+    ext_modules=cythonize(
+        [
+            "honey_curve/sklearn_light/_predictor.pyx",
+            "honey_curve/sklearn_light/_bitset.pyx",
+            "honey_curve/sklearn_light/common.pyx",
+        ],
+        annotate=True,
+    ),
+    include_dirs=[np.get_include()],
 )
