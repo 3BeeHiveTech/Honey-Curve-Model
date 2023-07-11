@@ -1,21 +1,13 @@
-"""Python setup.py for honey_curve package"""
 import io
 import os
 from setuptools import find_packages, setup
-from setuptools import setup
 from Cython.Build import cythonize
-from setuptools import setup, Extension, Command
+from setuptools import Extension
 import numpy as np
 
 
 def read(*paths, **kwargs):
-    """Read the contents of a text file safely.
-    >>> read("honey_curve", "VERSION")
-    '0.1.0'
-    >>> read("README.md")
-    ...
-    """
-
+    """Read the contents of a text file safely."""
     content = ""
     with io.open(
         os.path.join(os.path.dirname(__file__), *paths),
@@ -31,7 +23,6 @@ def read_requirements(path):
         for line in read(path).split("\n")
         if not line.startswith(('"', "#", "-", "git+"))
     ]
-
 
 
 # Specifica i file sorgente per i moduli per ciascuna architettura
@@ -99,5 +90,3 @@ setup(
     include_dirs=[np.get_include()],
     include_package_data=True,
 )
-
-
