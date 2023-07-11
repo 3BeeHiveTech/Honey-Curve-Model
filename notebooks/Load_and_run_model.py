@@ -150,6 +150,9 @@ df_weights_honey.shape
 # %% tags=[]
 model.jump_classification_model
 
+# %% tags=[]
+model.jump_classification_model._predictors
+
 # %%
 
 # %% [markdown]
