@@ -54,4 +54,5 @@ setup(
         annotate=True,
     ),
     include_dirs=[np.get_include()],
+    include_package_data=True,  # This line is important!
 )
