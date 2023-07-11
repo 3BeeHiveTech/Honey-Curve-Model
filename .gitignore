@@ -148,6 +148,7 @@ dmypy.json
 
 ### Data files ###
 *.jp2
+*.html
 
 ### Plotly outputs
 **/iframe_figures/
