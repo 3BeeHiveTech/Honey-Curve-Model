@@ -47,12 +47,26 @@ setup(
     extras_require={"test": read_requirements("requirements-test.txt")},
     ext_modules=cythonize(
         [
-            "honey_curve/sklearn_light/_predictor.pyx",
-            "honey_curve/sklearn_light/_bitset.pyx",
-            "honey_curve/sklearn_light/common.pyx",
+            Extension(
+                "honey_curve.sklearn_light._predictor",
+                sources=["honey_curve/sklearn_light/_predictor.pyx"],
+                extra_compile_args=['-arch', 'arm64'],  # Specifica l'architettura di destinazione come 'arm64'
+                include_dirs=[np.get_include()],
+            ),
+            Extension(
+                "honey_curve.sklearn_light._bitset",
+                sources=["honey_curve/sklearn_light/_bitset.pyx"],
+                include_dirs=[np.get_include()],
+            ),
+            Extension(
+                "honey_curve.sklearn_light.common",
+                sources=["honey_curve/sklearn_light/common.pyx"],
+                include_dirs=[np.get_include()],
+            ),
         ],
         annotate=True,
     ),
     include_dirs=[np.get_include()],
-    include_package_data=True,  # This line is important!
+    include_package_data=True,
 )
+
