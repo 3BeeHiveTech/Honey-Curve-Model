@@ -1,8 +1,8 @@
 # numpy>=1.25.0,<1.26
 # pandas>=1.5.3,<1.6
-pydantic>=1.10.8,<1.11
-pydantic[dotenv]
-sqlalchemy>=1.4.39,<1.5
-pymysql>=1.0.2,<1.1.0
-nbformat>=5.7.0,<5.8
-Cython
+# pydantic>=1.10.8,<1.11
+# pydantic[dotenv]
+# sqlalchemy>=1.4.39,<1.5
+# pymysql>=1.0.2,<1.1.0
+# nbformat>=5.7.0,<5.8
+# Cython
