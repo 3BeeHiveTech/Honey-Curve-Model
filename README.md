@@ -21,6 +21,7 @@ Next you can install the package in a local conda environment named `honey_curve
 ```bash
 conda create -n honey_curve python=3.10
 conda activate honey_curve
+(honey_curve) pip install Cython
 (honey_curve) pip install -e ".[test]"
 ```
 
@@ -42,7 +43,8 @@ environment and install the package from git:
 ```bash
 conda create -n honey_curve python=3.10
 conda activate honey_curve
-(honey_curve) pip install git+https://github.com/3BeeHiveTech/Honey-Curve-Model.git
+(honey_curve) pip install Cython
+(honey_curve) pip install git+ssh://git@github.com/3BeeHiveTech/Honey-Curve-Model.git
 ```
 
 This will install the `honey_curve` package directly from the git repository.
@@ -90,29 +92,81 @@ The code for the light version is in the `sklearn_light` module of this repo. Th
 of the model has been generated from the full model with the following code:
 
 ```python
+import pickle
+from importlib.resources import as_file, files
+from pathlib import Path
+
+import honey_curve
 from honey_curve.models.m221124_002.loader import M221124_002
-from honey_curve.sklearn_light.gradient_boosting import BareboneHistGradientBoostingClassifier
+from honey_curve.sklearn_light.binning import _BareboneBinMapper
+from honey_curve.sklearn_light.gradient_boosting import (
+    BareboneHistGradientBoostingClassifier,
+)
+from honey_curve.sklearn_light.loss import BareboneHalfMultinomialLoss
+from honey_curve.sklearn_light.predictor import BareboneTreePredictor
 
-model = M221124_002()
 
-bmodel = BareboneHistGradientBoostingClassifier(
-    classes_=model.jump_classification_model.classes_,
-    _loss=model.jump_classification_model._loss,
-    _n_features=model.jump_classification_model._n_features,
-    n_trees_per_iteration_=model.jump_classification_model.n_trees_per_iteration_,
-    _baseline_prediction=model.jump_classification_model._baseline_prediction,
-    _predictors=model.jump_classification_model._predictors,
-    _bin_mapper=model.jump_classification_model._bin_mapper,
-    _check_feature_names=model.jump_classification_model._check_feature_names,
+def convert_TreePredictor(treepred):
+    """Convert the input sklearn TreePredictor into the sklearn_light version."""
+    return BareboneTreePredictor(
+        nodes=treepred.nodes,
+        binned_left_cat_bitsets=treepred.binned_left_cat_bitsets,
+        raw_left_cat_bitsets=treepred.raw_left_cat_bitsets,
+    )
+
+
+def convert_predictors(predictors):
+    """Convert the input sklearn predictors into the sklearn_light version."""
+    return list(
+        map(
+            lambda x: list(map(lambda y: convert_TreePredictor(y), x)),
+            predictors,
+        )
+    )
+
+
+def convert_binmapper(binmapper):
+    """Convert the input sklearn binmapper into the sklearn_light version."""
+
+    return _BareboneBinMapper(
+        n_bins=binmapper.n_bins,
+        subsample=binmapper.subsample,
+        is_categorical=binmapper.is_categorical,
+        known_categories=binmapper.known_categories,
+        random_state=binmapper.random_state,
+        n_threads=binmapper.n_threads,
+        is_categorical_=binmapper.is_categorical_,
+        bin_thresholds_=binmapper.bin_thresholds_,
+    )
+
+
+with as_file(files(honey_curve).joinpath("models", "m221124_002")) as path:
+    path_to_model_folder = Path(path)
+
+# 1. Load the full sklearn model
+path_to_model = path_to_model_folder / "m221124_002.pickle"
+with open(path_to_model, "rb") as f:
+    m221124_002_full = pickle.load(f)
+
+m221124_002_bare = BareboneHistGradientBoostingClassifier(
+    classes_=m221124_002_full.classes_,
+    _loss=BareboneHalfMultinomialLoss(),
+    _n_features=m221124_002_full._n_features,
+    n_trees_per_iteration_=m221124_002_full.n_trees_per_iteration_,
+    _baseline_prediction=m221124_002_full._baseline_prediction,
+    _predictors=convert_predictors(m221124_002_full._predictors),
+    _bin_mapper=convert_binmapper(m221124_002_full._bin_mapper),
+    _check_feature_names=None,
 )
 
 # Save model
 path_to_model = "m221124_002_barebone.pickle"
 with open(path_to_model, "wb") as f:
-    pickle.dump(bmodel, f)
+    pickle.dump(m221124_002_bare, f)
 ```
 
-In the most recent version, the `M221124_002` loader has been modified so that the barebone model 
+which is the one in Notebook `Convert_full_model_to_light.ipynb`. In the most recent version, the 
+`M221124_002` loader has been modified so that the barebone model 
 is loaded instad. 
 
 A check on the equivalence of the two models is performed by: `test_BareboneHistGradientBoostingClassifier()`.
