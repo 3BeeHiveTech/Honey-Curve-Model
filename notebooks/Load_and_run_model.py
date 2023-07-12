@@ -116,8 +116,8 @@ session = Session(engine)
 download_weight_given_year_and_device_id(connect_url, device_id, year)
 
 # %%
-device_id = 694218
-year = 2022
+device_id = 725141
+year = 2023
 print(f"{year=}")
 print(f"{device_id=}")
 
@@ -151,7 +151,7 @@ df_weights_honey.shape
 model.jump_classification_model
 
 # %% tags=[]
-model.jump_classification_model._predictors
+# model.jump_classification_model._predictors
 
 # %%
 
@@ -298,14 +298,10 @@ fig.update_layout(
 )
 
 # Update xaxis properties
-# fig.update_xaxes(title_text="Time", row=1, col=1)
 fig.update_yaxes(title_text="weight", row=1, col=1)
-fig.update_xaxes(title_text="Time", row=2, col=1)
-fig.update_yaxes(title_text="honey_curve", row=2, col=1)
-# fig.update_xaxes(title_text="Time", row=3, col=1)
-# fig.update_yaxes(title_text="temp", row=3, col=1)
-# fig.update_xaxes(title_text="Time", row=4, col=1)
-# fig.update_yaxes(title_text="total_weight_value", row=4, col=1)
+fig.update_yaxes(title_text="filtered_weight", row=2, col=1)
+fig.update_yaxes(title_text="honey_curve", row=3, col=1)
+fig.update_xaxes(title_text="Time", row=3, col=1)
 
 # Update ylim properties
 
