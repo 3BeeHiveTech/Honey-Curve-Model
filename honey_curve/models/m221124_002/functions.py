@@ -108,23 +108,23 @@ def calc_honey_curve(
     trace_median = df["honey_curve"].rolling("2 H", center=True).median()
     df.loc[df_outlier["is_outlier"], "honey_curve"] = trace_median[df_outlier["is_outlier"]]
 
-    #### New additional jump detection remotion in the honey_curve via derivative, replace with median
-    ## Jump detection algorithm
-    df_out = df[["honey_curve"]].rename(columns={"honey_curve": "x"})
-    df_out["x_der"] = df_out["x"].diff()
-    df_out["x_der_abs"] = df_out["x_der"].abs()
-    df_out["x_der_mean"] = df_out["x_der_abs"].rolling(11, center=True).mean()
-    df_out["x_der_over_mean"] = df_out["x_der_abs"] > df_out["x_der_mean"] * 5.0
-    df_out["x_der_over"] = df_out["x_der_abs"] > 0.5
-    df_out["is_outlier"] = df_out["x_der_over_mean"] & df_out["x_der_over"]
-    ## Remove the jumps from the honey_curve
-    new_jumps_index = df[df_out["is_outlier"]].index
-    df[f"{px}jump_size_filtered_2"] = 0
-    df.loc[new_jumps_index, f"{px}jump_size_filtered_2"] = df_out.loc[new_jumps_index, "x_der"]
-    df[f"{px}jump_shift_2"] = df[f"{px}jump_size_filtered_2"].cumsum()
-    ## Update the honey_curve
-    df["honey_curve"] = df["honey_curve"] - df[f"{px}jump_shift_2"]
-    #### END of New additional jump detection remotion
+    # #### New additional jump detection remotion in the honey_curve via derivative, replace with median
+    # ## Jump detection algorithm
+    # df_out = df[["honey_curve"]].rename(columns={"honey_curve": "x"})
+    # df_out["x_der"] = df_out["x"].diff()
+    # df_out["x_der_abs"] = df_out["x_der"].abs()
+    # df_out["x_der_mean"] = df_out["x_der_abs"].rolling(11, center=True).mean()
+    # df_out["x_der_over_mean"] = df_out["x_der_abs"] > df_out["x_der_mean"] * 5.0
+    # df_out["x_der_over"] = df_out["x_der_abs"] > 0.5
+    # df_out["is_outlier"] = df_out["x_der_over_mean"] & df_out["x_der_over"]
+    # ## Remove the jumps from the honey_curve
+    # new_jumps_index = df[df_out["is_outlier"]].index
+    # df[f"{px}jump_size_filtered_2"] = 0
+    # df.loc[new_jumps_index, f"{px}jump_size_filtered_2"] = df_out.loc[new_jumps_index, "x_der"]
+    # df[f"{px}jump_shift_2"] = df[f"{px}jump_size_filtered_2"].cumsum()
+    # ## Update the honey_curve
+    # df["honey_curve"] = df["honey_curve"] - df[f"{px}jump_shift_2"]
+    # #### END of New additional jump detection remotion
 
     # Drop TMPCOLs if requested
     if drop_tmpcols:
