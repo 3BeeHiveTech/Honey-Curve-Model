@@ -78,6 +78,28 @@ def download_weight_given_year_and_hive_id(connect_url, hive_id, year):
     return df_weights
 
 
+# def download_weight_given_year_and_device_id(connect_url, device_id, year):
+#     """Select the data from the 'weights' table for the given year and device_id."""
+#     engine = create_engine(connect_url, echo=False, future=True)
+#     session = Session(engine)
+#     device_id = str(device_id)
+#     print(f"    * Downloading weights for {year=} and {device_id=}")
+#     stmt = (
+#         select(
+#             Devices.id,
+#             Devices.hive_id,
+#             Devices.external_id,
+#             Weights.acquired_at,
+#             Weights.total_weight_value,
+#         )
+#         .filter(Devices.external_id.cast(String).endswith(device_id))
+#         .join(Weights, Weights.device_id == Devices.id)
+#         .filter(Weights.acquired_at.between(f"{year}-01-01", f"{year}-12-31"))
+#     )
+#     results = session.execute(stmt).all()
+#     df_results = pd.DataFrame(results)
+#     return df_results
+
 def download_weight_given_year_and_device_id(connect_url, device_id, year):
     """Select the data from the 'weights' table for the given year and device_id."""
     engine = create_engine(connect_url, echo=False, future=True)
@@ -92,8 +114,8 @@ def download_weight_given_year_and_device_id(connect_url, device_id, year):
             Weights.acquired_at,
             Weights.total_weight_value,
         )
-        .filter(Devices.external_id.cast(String).contains(device_id))
-        .join(Weights, Weights.device_id == Devices.id)
+        .filter(Devices.external_id.cast(String).endswith(device_id))
+        .join(Weights, Weights.hive_id == Devices.hive_id)
         .filter(Weights.acquired_at.between(f"{year}-01-01", f"{year}-12-31"))
     )
     results = session.execute(stmt).all()
@@ -105,18 +127,7 @@ def download_weight_given_year_and_device_id(connect_url, device_id, year):
 # Select year and hive_id, download data
 
 # %%
-device_id = 694218
-year = 2022
-
-# %%
-engine = create_engine(connect_url, echo=False, future=True)
-session = Session(engine)
-
-# %%
-download_weight_given_year_and_device_id(connect_url, device_id, year)
-
-# %%
-device_id = 725141
+device_id = 765022
 year = 2023
 print(f"{year=}")
 print(f"{device_id=}")
