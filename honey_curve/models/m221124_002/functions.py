@@ -1,8 +1,7 @@
 """Auxiliary functions specific to the m221124_002 model."""
 
-
-import pandas as pd
-from pandas.api.types import is_numeric_dtype, is_string_dtype
+import pandas as pd  # type: ignore[import-untyped]
+from pandas.api.types import is_numeric_dtype, is_string_dtype  # type: ignore[import-untyped]
 
 import honey_curve.timeseries.outlier as timout
 

@@ -1,23 +1,39 @@
 """
 Loader function for the m221101_001 model.
 """
+from typing import Protocol
 
-import pandas as pd
-from pandas.api.types import is_numeric_dtype
-from pandas.core.dtypes.common import is_datetime_or_timedelta_dtype  # type: ignore[attr-defined]
+import pandas as pd  # type: ignore[import-untyped]
+from pandas.api.types import is_numeric_dtype  # type: ignore[import-untyped]
+from pandas.core.dtypes.common import (
+    is_datetime_or_timedelta_dtype,
+)  # type: ignore[attr-defined, import-untyped]
 
 import honey_curve.timeseries.outlier as timout
 import honey_curve.timeseries.resampling as timres
 from honey_curve.models.m221124_001.algorithm import apply_weight_jump_detection_algorithm_v03
 
 
-class M221124_001:
+class JumpDetectionModel(Protocol):
+    def preprocess(self, df_weights: pd.DataFrame, start_date: str, end_date: str) -> pd.DataFrame:
+        """Preprocessing function"""
+
+    def tag(self, df_weights: pd.DataFrame) -> pd.DataFrame:
+        """Tagging function"""
+
+    def preprocess_and_tag(
+        self, df_weights: pd.DataFrame, start_date: str, end_date: str
+    ) -> pd.DataFrame:
+        """Proprocessing and tag function"""
+
+
+class M221124_001(JumpDetectionModel):
     """Custom model class for the m221124_001 model, used for jump detection."""
 
     def __init__(self) -> None:
         """Load the model. Since it is just an algorithm in this case, no data needs to be loaded."""
 
-    def preprocess(self, df_weights: pd.DataFrame) -> pd.DataFrame:
+    def preprocess(self, df_weights: pd.DataFrame, start_date: str, end_date: str) -> pd.DataFrame:
         """Apply all data processing that is needed in order before launching the tag algorithm.
 
         Args:
@@ -33,6 +49,10 @@ class M221124_001:
 
             that come from a select from the threebee_production.weights table for a given hive_id
             and a given year.
+            start_date: Date in format 'YYYY-MM-DD' (e.g. '2023-01-30') to use as the start of the
+                reindex.
+            end_date: Date in format 'YYYY-MM-DD' (e.g. '2023-01-30') to use as the end of the
+                reindex.
 
         Returns:
             df_weights_preproc: Preprocessed weights time series of the type:
@@ -68,10 +88,6 @@ class M221124_001:
         # filling the gaps in the data when resampling (so that gaps greater than this time window
         # are not filled).
         timestep_thresh = pd.Timedelta("18 hours")
-        start_year = df_weights["acquired_at"].min().year
-        start_date = f"{start_year}-01-01"
-        end_year = df_weights["acquired_at"].max().year
-        end_date = f"{end_year}-12-31"
 
         # Remove outliers via derivative, replace with median
         df_weights_outlier = timout.detect_outliers_via_derivative(
@@ -160,8 +176,10 @@ class M221124_001:
 
         return df_weights_tagged
 
-    def preprocess_and_tag(self, df_weights: pd.DataFrame) -> pd.DataFrame:
+    def preprocess_and_tag(
+        self, df_weights: pd.DataFrame, start_date: str, end_date: str
+    ) -> pd.DataFrame:
         """Conveniance method to apply both preprocessing and tagging."""
-        df_weights_preproc = self.preprocess(df_weights)
+        df_weights_preproc = self.preprocess(df_weights, start_date=start_date, end_date=end_date)
         df_weights_tagged = self.tag(df_weights_preproc)
         return df_weights_tagged

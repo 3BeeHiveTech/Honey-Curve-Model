@@ -4,26 +4,14 @@ Loader function for the m221124_002 model.
 import pickle
 from importlib.resources import as_file, files
 from pathlib import Path
-from typing import Protocol
 
 import numpy as np
-import pandas as pd
+import pandas as pd  # type: ignore[import-untyped]
 
 import honey_curve
 import honey_curve.matrixops.interpolation as matint
-from honey_curve.models.m221124_001.loader import M221124_001
+from honey_curve.models.m221124_001.loader import M221124_001, JumpDetectionModel
 from honey_curve.models.m221124_002.functions import calc_honey_curve
-
-
-class JumpDetectionModel(Protocol):
-    def preprocess(self, df_weights: pd.DataFrame) -> pd.DataFrame:
-        """Preprocessing function"""
-
-    def tag(self, df_weights: pd.DataFrame) -> pd.DataFrame:
-        """Tagging function"""
-
-    def preprocess_and_tag(self, df_weights: pd.DataFrame) -> pd.DataFrame:
-        """Proprocessing and tag function"""
 
 
 class M221124_002:
@@ -38,7 +26,7 @@ class M221124_002:
 
         This model depends on the preprocessing done by the jump_detection_model, which is the
         is the m221124_001 model"""
-        with as_file(files(honey_curve).joinpath("models", "m221124_002")) as path:
+        with as_file(files(honey_curve).joinpath("models", "m221124_002")) as path:  # type: ignore[call-arg]
             self.path_to_model_folder = Path(path)
         self.path_to_model = (
             self.path_to_model_folder / "m221124_002_barebone.pickle"
@@ -47,7 +35,7 @@ class M221124_002:
             self.jump_classification_model = pickle.load(f)
         self.jump_detection_model = jump_detection_model
 
-    def preprocess(self, df_weights: pd.DataFrame) -> pd.DataFrame:
+    def preprocess(self, df_weights: pd.DataFrame, start_date: str, end_date: str) -> pd.DataFrame:
         """Apply all data processing that is needed in order before launching the tag algorithm.
 
         This preprocessing is based on the same preprocessing of the jump_detection_model.
@@ -65,6 +53,10 @@ class M221124_002:
 
             that come from a select from the threebee_production.weights table for a given hive_id
             and a given year.
+            start_date: Date in format 'YYYY-MM-DD' (e.g. '2023-01-30') to use as the start of the
+                reindex.
+            end_date: Date in format 'YYYY-MM-DD' (e.g. '2023-01-30') to use as the end of the
+                reindex.
 
         Returns:
             df_weights_preproc: Preprocessed weights time series of the type:
@@ -79,7 +71,9 @@ class M221124_002:
 
             where all of the needed preprocessing steps have been applied.
         """
-        df_weights_preproc = self.jump_detection_model.preprocess(df_weights)
+        df_weights_preproc = self.jump_detection_model.preprocess(
+            df_weights, start_date=start_date, end_date=end_date
+        )
         return df_weights_preproc
 
     def tag(self, df_weights_preproc: pd.DataFrame) -> pd.DataFrame:
@@ -212,15 +206,19 @@ class M221124_002:
         df_weights_honey = calc_honey_curve(df_weights_tagged=df_weights_tagged, drop_tmpcols=True)
         return df_weights_honey
 
-    def preprocess_and_tag(self, df_weights: pd.DataFrame) -> pd.DataFrame:
+    def preprocess_and_tag(
+        self, df_weights: pd.DataFrame, start_date: str, end_date: str
+    ) -> pd.DataFrame:
         """Conveniance method to apply both preprocessing and tagging."""
-        df_weights_preproc = self.preprocess(df_weights)
+        df_weights_preproc = self.preprocess(df_weights, start_date=start_date, end_date=end_date)
         df_weights_tagged = self.tag(df_weights_preproc)
         return df_weights_tagged
 
-    def preprocess_and_tag_and_calc_honey(self, df_weights: pd.DataFrame) -> pd.DataFrame:
+    def preprocess_and_tag_and_calc_honey(
+        self, df_weights: pd.DataFrame, start_date: str, end_date: str
+    ) -> pd.DataFrame:
         """Conveniance method to apply preprocessing, tagging and honey calculation."""
-        df_weights_preproc = self.preprocess(df_weights)
+        df_weights_preproc = self.preprocess(df_weights, start_date=start_date, end_date=end_date)
         df_weights_tagged = self.tag(df_weights_preproc)
         df_weights_honey = self.calc_honey_curve(df_weights_tagged)
         return df_weights_honey
