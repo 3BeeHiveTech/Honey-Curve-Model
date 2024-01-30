@@ -100,6 +100,7 @@ def download_weight_given_year_and_hive_id(connect_url, hive_id, year):
 #     df_results = pd.DataFrame(results)
 #     return df_results
 
+
 def download_weight_given_year_and_device_id(connect_url, device_id, year):
     """Select the data from the 'weights' table for the given year and device_id."""
     engine = create_engine(connect_url, echo=False, future=True)
@@ -128,12 +129,15 @@ def download_weight_given_year_and_device_id(connect_url, device_id, year):
 
 # %%
 device_id = 765022
+hive_id = 11521
 year = 2023
 print(f"{year=}")
 print(f"{device_id=}")
+print(f"{hive_id=}")
 
 # %%
-df_weights_raw = download_weight_given_year_and_device_id(connect_url, device_id, year)
+# df_weights_raw = download_weight_given_year_and_device_id(connect_url, device_id, year)
+df_weights_raw = download_weight_given_year_and_hive_id(connect_url, hive_id, year)
 
 # %%
 df_weights_raw.head(2)
@@ -150,7 +154,11 @@ df_weights_raw.shape
 model = M221124_002()
 
 # %%
-df_weights_honey = model.preprocess_and_tag_and_calc_honey(df_weights_raw)
+start_date = f"{year}-01-01"
+end_date = f"{year}-12-31"
+df_weights_honey = model.preprocess_and_tag_and_calc_honey(
+    df_weights_raw, start_date=start_date, end_date=end_date
+)
 
 # %%
 df_weights_honey.head()
@@ -179,6 +187,7 @@ color_map = {
     "start": "red",
     "end": "red",
 }
+
 
 def add_vrect(irow, icol, x0, x1, y0, y1, name, color):
     """Add a vrect on the selected plot, from x0 to x1

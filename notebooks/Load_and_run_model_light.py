@@ -43,6 +43,7 @@ pd.set_option("display.max_columns", None)
 # %% [markdown]
 # # Download raw trace from DB
 
+
 # %%
 def download_weight_given_year_and_hive_id(connect_url, hive_id, year):
     """Select the data from the 'weights' table for the given year and hive_id."""
@@ -130,7 +131,11 @@ df_weights_raw.shape
 model = M221124_002()
 
 # %%
-df_weights_honey = model.preprocess_and_tag_and_calc_honey(df_weights_raw)
+start_date = f"{year}-01-01"
+end_date = f"{year}-12-31"
+df_weights_honey = model.preprocess_and_tag_and_calc_honey(
+    df_weights_raw, start_date=start_date, end_date=end_date
+)
 
 # %%
 df_weights_honey.head()
