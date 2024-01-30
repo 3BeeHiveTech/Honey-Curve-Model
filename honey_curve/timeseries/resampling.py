@@ -5,7 +5,7 @@ from datetime import timedelta, timezone
 from typing import Optional
 
 import numpy as np
-import pandas as pd
+import pandas as pd  # type: ignore[import-untyped]
 
 
 def resample_timeseries_dataframe(
@@ -90,6 +90,8 @@ def resample_timeseries_dataframe(
         inclusive="both",
         tz=tz,
     )
+    # Remove duplicates with exactly the same indes time
+    df_in = df_in[~df_in.index.duplicated(keep="first")].copy()
     df_in_reindex = df_in.reindex(df_in.index.union(reindex))
     df_in_reindex = df_in_reindex.reindex(df_in_reindex.index.union(reindex2))
     df_in_reindex = df_in_reindex.sort_index()
